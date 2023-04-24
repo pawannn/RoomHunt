@@ -1,0 +1,71 @@
+@import url('./main.css');
+
+.container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    background-color: rgb(255, 255, 255);
+}
+
+.title-card {
+    width: 100%;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.title-card img {
+    max-width: 600px;
+}
+
+.middle-card {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.middle-card h1 {
+    font-weight: bolder;
+    /* color: rgba(61, 177, 212, 0.805); */
+    color: rgba(107, 54, 182, 0.805);
+    font-size: 35px;
+    margin-bottom: 40px;
+}
+
+.middle-card .options {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap : 100px;
+}
+
+.middle-card .options .box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 1px 3px #0000001a, 0 1px 2px #0000000f;
+}
+
+.middle-card .options .box img {
+    max-width: 300px;
+}
+
+.middle-card .options a {
+    text-decoration: none;
+    color: black;
+}
+
+.middle-card .options .box a b {
+    font-weight: bolder;
+    font-size: 24px;
+}
+
+.middle-card .options .box:hover {
+    cursor: pointer;
+}
