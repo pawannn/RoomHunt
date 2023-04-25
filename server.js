@@ -9,6 +9,7 @@ require('dotenv').config()
 //Routers
 const authRouter = require('./routes/authRoutes');
 const landlordRoutes = require('./routes/landlordRoute');
+const lodgerRoutes = require('./routes/lodgerRoute');
 
 //authentication middleware
 const Authentication = require('./middlewares/authentication');
@@ -64,14 +65,7 @@ app.use('/api', authRouter);
 
 app.use('/landlorddashboard', Authentication.landlord_Authentication, landlordRoutes);
 
-app.get('/lodgerdashboard', Authentication.lodger_Authentication, (req, res) => {
-    res.render("lodgerdashboard")
-});
-
-//temporary routes
-app.get("/landlorddetails", (req, res) => {
-    res.render('landlorddetails');
-})
+app.use('/lodgerdashboard', Authentication.lodger_Authentication, lodgerRoutes);
 
 //404 Route
 app.use((req, res) => {

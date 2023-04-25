@@ -23,7 +23,9 @@ const landLord_register = (req, res) => {
                             res.json({err: err})
                         }
                         else{
-                            const landlord = new Landlords({email : email, password : hashed})
+                            const name = req.body.newname;
+                            const phone = req.body.newphone;
+                            const landlord = new Landlords({email : email, password : hashed, name : name, phone : phone});
                             landlord.save()
                             .then((result) => {
                                 // res.json({message: 'Data saved'});
@@ -105,10 +107,13 @@ const lodger_register = (req, res) => {
                         if(err){
                             res.json({err: err})
                         }
-                        const lodger = new Lodgers({email : newEmail, password : hashed});
+                        const name = req.body.newname;
+                        const phone = req.body.newphone;
+                        const lodger = new Lodgers({email : newEmail, password : hashed, name : name, phone : phone});
                         lodger.save()
                             .then((result) => {
-                                res.json({message: "Data saved"});
+                                // res.json({message: "Data saved"});
+                                res.redirect('/lodger')
                             })
                             .catch((err) => {
                                 res.json({err: err})

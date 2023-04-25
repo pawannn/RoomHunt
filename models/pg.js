@@ -41,6 +41,10 @@ const pgSchema = new Schema({
     },
     comments : {
         type : Array
+    },
+    ownerId : {
+        type : String,
+        required : true,
     }
 }, {timeStamps : true});
 
