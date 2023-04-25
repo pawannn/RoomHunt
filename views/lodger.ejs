@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Lodger</title>
     <link rel="stylesheet" href="/styles/register-login.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -16,6 +16,9 @@
       <img src = "/assets/reglogin.png" />
     </div>
     <div class = "right">
+      <div class = "title">
+        <h1>Hey Lodger!</h1>
+      </div>
       <div class = "forms">
         <div class="tab">
             <button class="tablinks active" onclick="openTab(event, 'Login')"><b>Login</b></button>
@@ -23,7 +26,7 @@
           </div>
           <div id="Login" class="tabcontent">
             <!-- <h2>Login</h2> -->
-            <form>
+            <form method = "POST" action = "/api/lodgerlogin">
               <label for="username">Email :</label>
               <input type="email" id="username" name="email" required>
               <br>
@@ -38,19 +41,19 @@
           
           <div id="Register" class="tabcontent">
             <!-- <h2>Register</h2> -->
-            <form>
-              <label for="newusername">Email :</label>
-              <input type="email" id="newusername" name="newemail" required>
-              <br>
-              <label for="newpassword">Password :</label>
-              <input type="password" id="newpassword" name="newpassword" required>
-              <br>
-              <label for="confirmpassword">Confirm Password :</label>
-              <input type="password" id="confirmpassword" name="confirmpassword" required>
-              <br>
-              <div class = "button">
-                <button type="submit"><b>Register</b></button>
-              </div>
+            <form method = "POST" action = "/api/lodgerregister">
+                <label for="newusername">Email :</label>
+                <input type="email" id="newusername" name="newemail" required>
+                <br>
+                <label for="newpassword">Password :</label>
+                <input type="password" id="newpassword" name="newpassword" required>
+                <br>
+                <label for="confirmpassword">Confirm Password :</label>
+                <input type="password" id="confirmpassword" name="confirmpassword" required>
+                <br>
+                <div class = "button">
+                  <button type="submit"><b>Register</b></button>
+                </div>
             </form>
           </div>
       </div>

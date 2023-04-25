@@ -10,7 +10,19 @@ const landLordSchema = new Schema({
     password : {
         type : String,
         required : true,
+    },
+    name : {
+        type : String,
+        required : true,
+    },
+    phone : {
+        type : String,
+        required : true,
+    },
+    pgs : {
+        type : Array,
     }
+
 }, {timestamps : true});
 
 const Landlord = mongoose.model('landlord', landLordSchema);

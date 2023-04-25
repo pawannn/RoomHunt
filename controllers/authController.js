@@ -60,15 +60,15 @@ const landLord_login = (req, res) => {
                         res.json({err: err})
                     }
                     else{
-                        const token = jwt.sign({id: user._id}, 'access_token_secret', {expiresIn : '1h'});
+                        const token = jwt.sign({id: user._id}, process.env.ACCESS_TOKEN_SECRET, {expiresIn : process.env.ACCESS_TOKEN_EXPIRY});
                         res.cookie('landlord_access_token', token, {
                             httpOnly : true,
-                            expires: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000),
+                            expires: new Date(Date.now() + 1 * 24 * 60 * 60 * 1000),
                             sameSite: 'strict',
                         });
                         // res.json({
                         //     message: "authentication Successfull",
-                        //     token
+                        //     token,
                         // });
                         res.redirect("/landlorddashboard")
                     }
@@ -137,15 +137,17 @@ const lodger_login = (req, res) => {
                     res.json({err: err});
                 }
                 else{
-                    const access_token = jwt.sign({id: user._id}, process.env.ACCESS_TOKEN_SECRET, {expiresIn : "1h"});
+                    const access_token = jwt.sign({id: user._id}, process.env.ACCESS_TOKEN_SECRET, {expiresIn : process.env.ACCESS_TOKEN_EXPIRY});
                     res.cookie('lodger_access_token', access_token, {
                         httpOnly: true,
                         expires: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000),
                         sameSite: 'strict',
-                    }).json({
-                        message: "Authentication Successfull",
-                        access_token : access_token,
-                    })
+                    });
+                    // res.json({
+                    //     message: "Authentication Successfull",
+                    //     access_token : access_token,
+                    // })
+                    res.redirect('/lodgerdashboard');
                 }
             })
         }
@@ -159,7 +161,8 @@ const lodger_login = (req, res) => {
 }
 
 const lodger_logout = (req, res) => {
-    res.clearCookie('lodger_access_token').json({message: "logged Out"})
+    res.clearCookie('lodger_access_token');
+    res.redirect('/lodger');
 }
 
 module.exports = {

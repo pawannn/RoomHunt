@@ -21,6 +21,7 @@
 
 .container .left img {
   max-width: 500px;
+  box-shadow: 0 1px 3px #0000001a, 0 1px 2px #0000000f;
 }
 
 .container  .right {
@@ -29,9 +30,10 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-direction: column;
   color: black;
   font-weight: bolder;
-  box-shadow: 0 1px 3px #0000001a, 0 1px 2px #0000000f;
+  gap : 15px;
 }
 
 .container .titleCard img {
@@ -43,6 +45,7 @@
   display: flex;
   flex-direction: column;
   border-radius: 5px;
+  box-shadow: 0 1px 3px #0000001a, 0 1px 2px #0000000f;
 }
 
 .tab {
@@ -51,63 +54,65 @@
     border: 1px solid #ccc;
     background-color: #f1f1f1;
     display: flex;
-  }
+}
   
-  .tab button {
-    background-color: inherit;
-    border: none;
-    outline: none;
-    cursor: pointer;
-    padding: 14px 16px;
-    transition: 0.3s;
-    width: 50%;
-    color: black;
-    font-size: 28px;
-  }
+.tab button {
+  background-color: inherit;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  padding: 14px 16px;
+  transition: 0.3s;
+  width: 50%;
+  color: black;
+  font-size: 28px;
+}
   
-  .tab button.active {
-    background-color: #ccc;
-  }
+.tab button.active {
+  background-color: #ccc;
+}
   
-  .tabcontent {
-    width: 100%;
-    display: none;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-top: none;
-    display: flex;
-    font-size: 20px;
-    height: 325px;
-  }
+.tabcontent {
+  width: 100%;
+  display: none;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-top: none;
+  display: flex;
+  font-size: 20px;
+  height: 325px;
+  background-color: white;
+  border: 5px;
+}
 
-  .tabcontent form {
-    display: flex;
-    flex-direction: column;
-  }
+.tabcontent form {
+  display: flex;
+  flex-direction: column;
+}
 
-  .tabcontent form input[type="email"],  .tabcontent form input[type="password"]{
-    width: 100%;
-    height: 30px;
-    padding-left: 10px;
-    color: black;
-    font-size: 16px;
-    font-weight:600;
-  }
+.tabcontent form input[type="email"],  .tabcontent form input[type="password"]{
+  width: 100%;
+  height: 30px;
+  padding-left: 10px;
+  color: black;
+  font-size: 16px;
+  font-weight:600;
+}
 
-  .tabcontent form .button {
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
+.tabcontent form .button {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 
-  .tabcontent form button {
-    height: 30px;
-    width: 50%;
-    font-size: 18px;
-  }
+.tabcontent form button {
+  height: 30px;
+  width: 50%;
+  font-size: 18px;
+}
   
-  .tabcontent.show {
-    display: block;
-  }
+.tabcontent.show {
+  display: block;
+}
   
