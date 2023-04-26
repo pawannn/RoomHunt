@@ -5,14 +5,41 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/styles/landlorddashboard.css">
 </head>
 <body>
-    <h1>Landlord, Dashboard</h1>
-    <p>Name : <%=data.name%></p>
-    <p>Email : <%=data.email%></p>
-    <p>Number : <%=data.phone%></p>
-    <form method = "POST" action = "/api/landlordlogout">
-        <button type = "submit">Logout</button>
-    </form>
+    <div class = "container">
+        <div class = "details">
+            <h1>Landlord, Dashboard</h1>
+            <p>Name : <%=data.name%></p>
+            <p>Email : <%=data.email%></p>
+            <p>Number : <%=data.phone%></p>
+        </div>
+        <div class = "content">
+            <div class="tab">
+                <button class="tablinks" onclick="opensection(event, 'mypg')">My PGs</button>
+                <button class="tablinks" onclick="opensection(event, 'newpg')">New PG</button>
+              </div>
+              
+              <div id="mypg" class="tabcontent">
+                <h3>My PGs</h3>
+                <p>Your PGs</p>
+              </div>
+              
+              <div id="newpg" class="tabcontent">
+                <h3>New PG</h3>
+                <p>Add New PG</p>
+              </div>
+        </div>
+        <div class = "footer">
+            <form method = "POST" action = "/api/landlordlogout">
+                <button type = "submit">Logout</button>
+            </form>
+        </div>
+        <script src = "/scripts/landlorddashboard.js"></script>
+    </div>
 </body>
 </html>

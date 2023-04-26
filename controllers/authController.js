@@ -29,7 +29,7 @@ const landLord_register = (req, res) => {
                             landlord.save()
                             .then((result) => {
                                 // res.json({message: 'Data saved'});
-                                res.redirect('/landlord')
+                                res.redirect('/thankyou')
                             })
                             .catch((err) => {
                                 res.json({err: err});
@@ -113,7 +113,7 @@ const lodger_register = (req, res) => {
                         lodger.save()
                             .then((result) => {
                                 // res.json({message: "Data saved"});
-                                res.redirect('/lodger')
+                                res.redirect('/thankyou')
                             })
                             .catch((err) => {
                                 res.json({err: err})

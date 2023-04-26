@@ -61,6 +61,10 @@ app.get('/lodger', (req, res) => {
     res.render('lodger')
 });
 
+app.get('/thankyou', (_, res) => {
+    res.render('thankyou')
+})
+
 app.use('/api', authRouter);
 
 app.use('/landlorddashboard', Authentication.landlord_Authentication, landlordRoutes);
