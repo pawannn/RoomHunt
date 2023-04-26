@@ -10,53 +10,23 @@ const index = (req, res) => {
             name : user.name,
             phone : user.phone,
             email : user.email,
-            pgs : user.pgs,
+            pgs : user.pgs, //array of pg ids
         }
-        res.render('landlorddashboard', {data : data});
+        //now we will fecth all the pgs from the database using the pg ids
+        PG.find({_id : {$in : data.pgs}})
+        .then((pgs) => {
+            data.pgs = pgs;
+            console.log(data.pgs);
+            res.render('landlorddashboard', {data : data});
+        })
+        .catch((err) => {
+            res.send({err : err});
+        });
     })
     .catch((err) => {
         res.send({err : err});
     })
 }
-
-// const addPg = (req, res) => {
-//     const userID = req.user.id;
-//     const pgData = {
-//         pgname : req.body.pgname,
-//         pgState : req.body.pgState,
-//         pgCity : req.body.pgCity,
-//         pgPincode : req.body.pgPincode,
-//         pgPhone : req.body.pgPhone,
-//         singleRoomPrice : req.body.singleRoomPrice,
-//         doubleRoomPrice : req.body.doubleRoomPrice,
-//         price : req.body.price,
-//         images : req.file.filename,
-//         comments : [],
-//         RoomRequests : [],
-//         ownerId : userID,
-//     }
-//     const pg = new PG(pgData);
-//     pg.save()
-//     .then((result) => {
-//         Landlords.findById(userID)
-//         .then((user) => {
-//             user.pgs.push(result._id);
-//             user.save()
-//             .then((result) => {
-//                 res.redirect('/landlorddashboard');
-//             })
-//             .catch((err) => {
-//                 res.send({err : err});
-//             })
-//         })
-//         .catch((err) => {
-//             res.send({err : err});
-//         })
-//     })
-//     .catch((err) => {
-//         res.send({err : err});
-//     })
-// }
 
 module.exports = {
     index,

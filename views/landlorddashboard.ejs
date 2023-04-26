@@ -34,16 +34,25 @@
               <div id="mypg" class="tabcontent">
                 <div class = "mypg">
                     <% if (data.pgs.length > 0) { %>
-                        <% data.pgs.forEach(function(pg) { %>
                             <div class = "pg">
-                                <div class = "pgdetails">
-                                    <!-- <p>Name : <%=pg.name%></p>
-                                    <p>Address : <%=pg.address%></p>
-                                    <p>Number : <%=pg.phone%></p> -->
-                                    <p>Yes data</p>
-                                </div>
+                                <table border="1">
+                                    <tr>
+                                        <th>Sr. No</th>
+                                        <th>PG Name</th>
+                                        <th>Room Requests</th>
+                                    </tr>
+                                    <% i = 0 %>
+                                    <% data.pgs.forEach(function(pg) { %>
+                                        <% i = i + 1 %>
+                                        <tr>
+                                            <th><%=i%></th>
+                                            <th><a href = "/landlorddashboard/<%=pg._id%>"><%=pg.pgname%></a></th>
+                                            <th><%=pg.RoomRequests.length%></th>
+                                        </tr>
+                                    <% }) %>
+                                </table>
                             </div>
-                        <% }) %>
+                        
                     <% } else { %>
                         <img src = "/assets/nodata.png" alt = "no data"/>
                         <b>You Have not added any PG currently</b>
@@ -51,8 +60,109 @@
                 </div>
               </div>
               <div id="newpg" class="tabcontent">
-                <h3>New PG</h3>
-                <p>Add New PG</p>
+                <div class = "newpgform">
+                    <form method = "POST" action = "/pgAPI/create">
+                        <table border="1px">
+                            <tr>
+                                <td>PG Name</td>
+                                    <td><input type = "text" name = "pgname"/></td>
+                                </tr>
+                                <tr>
+                                    <td>PG Type</td>
+                                    <td>
+                                        <select name="pgType" id="pgType">
+                                            <option value = "None"><b>Select</b></option>
+                                            <option value="men"><b>Men's PG</b></option>
+                                            <option value="women"><b>Women's PG</b></option>
+                                            <option value="colive"><b>Colive PG</b></option>
+                                        </select>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>PG State</td>
+                                    <td>
+                                        <select name = "pgState" id="inputState">
+                                            <option value="">Select State</option>
+                                            <option value="Andra Pradesh">Andra Pradesh</option>
+                                            <option value="Arunachal Pradesh">Arunachal Pradesh</option>
+                                            <option value="Assam">Assam</option>
+                                            <option value="Bihar">Bihar</option>
+                                            <option value="Chhattisgarh">Chhattisgarh</option>
+                                            <option value="Goa">Goa</option>
+                                            <option value="Gujarat">Gujarat</option>
+                                            <option value="Haryana">Haryana</option>
+                                            <option value="Himachal Pradesh">Himachal Pradesh</option>
+                                            <option value="Jammu and Kashmir">Jammu and Kashmir</option>
+                                            <option value="Jharkhand">Jharkhand</option>
+                                            <option value="Karnataka">Karnataka</option>
+                                            <option value="Kerala">Kerala</option>
+                                            <option value="Madya Pradesh">Madya Pradesh</option>
+                                            <option value="Maharashtra">Maharashtra</option>
+                                            <option value="Manipur">Manipur</option>
+                                            <option value="Meghalaya">Meghalaya</option>
+                                            <option value="Mizoram">Mizoram</option>
+                                            <option value="Nagaland">Nagaland</option>
+                                            <option value="Orissa">Orissa</option>
+                                            <option value="Punjab">Punjab</option>
+                                            <option value="Rajasthan">Rajasthan</option>
+                                            <option value="Sikkim">Sikkim</option>
+                                            <option value="Tamil Nadu">Tamil Nadu</option>
+                                            <option value="Telangana">Telangana</option>
+                                            <option value="Tripura">Tripura</option>
+                                            <option value="Uttaranchal">Uttaranchal</option>
+                                            <option value="Uttar Pradesh">Uttar Pradesh</option>
+                                            <option value="West Bengal">West Bengal</option>
+                                            <option disabled style="background-color:#aaa; color:#fff">UNION Territories</option>
+                                            <option value="Andaman and Nicobar Islands">Andaman and Nicobar Islands</option>
+                                            <option value="Chandigarh">Chandigarh</option>
+                                            <option value="Dadar and Nagar Haveli">Dadar and Nagar Haveli</option>
+                                            <option value="Daman and Diu">Daman and Diu</option>
+                                            <option value="Delhi">Delhi</option>
+                                            <option value="Lakshadeep">Lakshadeep</option>
+                                            <option value="Pondicherry">Pondicherry</option>
+                                        </select>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>PG City</td>
+                                    <td>
+                                        <select name = "pgCity" id="inputDistrict">
+                                            <option value="">-- select one --</option>
+                                        </select>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Pincode</td>
+                                    <td><input type = "number" name = "pgPincode" /></td>
+                                </tr>
+                                <tr>
+                                    <td>PG Address</td>
+                                    <td><textarea name = "pgAddress"></textarea></td>
+                                </tr>
+                                <tr>
+                                    <td>PG Phone</td>
+                                    <td><input type = "number" name = "pgPhone" /></td>
+                                </tr>
+                                <tr>
+                                    <td>Single Room Price</td>
+                                    <td><input type = "number" name = "singleRoomPrice" /></td>
+                                </tr>
+                                <tr>
+                                    <td>Double Sharing Pirce</td>
+                                    <td><input type = "number" name  = "doubleRoomPrice"/></td>
+                                </tr>
+                                <tr>
+                                    <td>Extra Sharing Price</td>
+                                    <td><input type = "number" name = "price"></td>
+                                </tr>
+                                <tr>
+                                    <td>Upload Image</td>
+                                    <td><input type = "file" name = "images"></td>
+                                </tr>
+                        </table>
+                        <button type = "submit">Upload</button>
+                    </form>
+                </div>
               </div>
         </div>
         <div class = "footer">
@@ -61,6 +171,7 @@
             </form>
         </div>
         <script src = "/scripts/landlorddashboard.js"></script>
+        <script src = "/scripts/stateCity.js"></script>
     </div>
 </body>
 </html>

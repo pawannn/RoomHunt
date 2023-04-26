@@ -14,6 +14,9 @@ const lodgerRoutes = require('./routes/lodgerRoute');
 //authentication middleware
 const Authentication = require('./middlewares/authentication');
 
+//pg CRUD
+const pgCRUDroute = require('./routes/pgCRUDroute');
+
 //temporary models
 const PG = require('./models/pg');
 const upload = require('./middlewares/upload');
@@ -76,49 +79,51 @@ app.use('/landlorddashboard', Authentication.landlord_Authentication, landlordRo
 
 app.use('/lodgerdashboard', Authentication.lodger_Authentication, lodgerRoutes);
 
+app.use('/pgAPI', pgCRUDroute);
+
 //temporary Routes
-app.post('/pgdetails', upload.single('images') ,(req, res) => {
-    const userID = req.body.ownerId;
-    const pgData = {
-        pgname : req.body.pgname,
-        pgState : req.body.pgState,
-        pgCity : req.body.pgCity,
-        pgPincode : req.body.pgPincode,
-        pgAddress : req.body.pgAddress,
-        pgType : req.body.pgType,
-        pgPhone : req.body.pgPhone,
-        singleRoomPrice : req.body.singleRoomPrice,
-        doubleRoomPrice : req.body.doubleRoomPrice,
-        price : req.body.price,
-        ownerId : userID,
-        comments : [],
-        RoomRequests : [],
-    }
-    if(req.file){
-        pgData.images = req.file.path;
-    }
-    const pg = new PG(pgData);
-    pg.save()
-    .then((result) => {
-        Landlords.findById(userID)
-        .then((user) => {
-            user.pgs.push(result._id);
-            user.save()
-            .then((result) => {
-                res.json({message: 'Success'});
-            })
-            .catch((err) => {
-                res.send({err : err});
-            })
-        })
-        .catch((err) => {
-            res.send({err : err});
-        })
-    })
-    .catch((err) => {
-        res.send({err : err});
-    })
-});
+// app.post('/pgdetails', upload.single('images') ,(req, res) => {
+//     const userID = req.body.ownerId;
+//     const pgData = {
+//         pgname : req.body.pgname,
+//         pgState : req.body.pgState,
+//         pgCity : req.body.pgCity,
+//         pgPincode : req.body.pgPincode,
+//         pgAddress : req.body.pgAddress,
+//         pgType : req.body.pgType,
+//         pgPhone : req.body.pgPhone,
+//         singleRoomPrice : req.body.singleRoomPrice,
+//         doubleRoomPrice : req.body.doubleRoomPrice,
+//         price : req.body.price,
+//         ownerId : userID,
+//         comments : [],
+//         RoomRequests : [],
+//     }
+//     if(req.file){
+//         pgData.images = req.file.path;
+//     }
+//     const pg = new PG(pgData);
+//     pg.save()
+//     .then((result) => {
+//         Landlords.findById(userID)
+//         .then((user) => {
+//             user.pgs.push(result._id);
+//             user.save()
+//             .then((result) => {
+//                 res.json({message: 'Success'});
+//             })
+//             .catch((err) => {
+//                 res.send({err : err});
+//             })
+//         })
+//         .catch((err) => {
+//             res.send({err : err});
+//         })
+//     })
+//     .catch((err) => {
+//         res.send({err : err});
+//     })
+// });
 
 app.post('/deletepg', (req, res) => {
     const pgId = req.body.pgId;

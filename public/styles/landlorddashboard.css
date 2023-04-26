@@ -95,6 +95,22 @@
     max-width: 200px;
 }
 
+.tabcontent .mypg .pg {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.tabcontent .mypg .pg table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.tabcontent .mypg .pg td {
+    padding: 5px;
+    font-size: 18px;
+}
+
 .container .footer {
     width: 100%;
     display: flex;
@@ -109,4 +125,81 @@
     border: none;
     background-color: aqua;
     border-radius: 5px;
+}
+
+.container .footer button:hover {
+    cursor: pointer;
+}
+
+.container .tabcontent .newpgform {
+    width: 100%;
+    padding: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.container .tabcontent .newpgform form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 90%;
+    align-items: center;
+    justify-content: center;
+}
+
+.container .tabcontent .newpgform form .box {
+    width: 100%;
+    display: flex;
+}
+
+.container .tabcontent .newpgform form table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.container .tabcontent .newpgform form td {
+    padding: 10px 25px;
+    font-size: 18px;
+}
+
+.container .tabcontent .newpgform form select option {
+    font-weight: 600;
+}
+
+.container .tabcontent .newpgform form select, .container .tabcontent .newpgform form input[type = "text"], .container .tabcontent .newpgform form input[type = "number"] {
+    height: 40px;
+    width: 100%;
+    padding-left: 25px;
+    font-weight: 600;
+    font-size: 16px;
+    border-radius: 5px;
+}
+
+.container .tabcontent .newpgform form textarea {
+    height: 60px;
+    width: 100%;
+    padding: 10px;
+    font-weight: 600;
+    font-size: 16px;
+    border-radius: 5px;
+    resize: none;
+}
+
+.container .tabcontent .newpgform form input[type = "text"]{
+    font-weight: 600;
+}
+
+.container .tabcontent .newpgform form button {
+    margin-top: 10px;
+    width: 200px;
+    height: 50px;
+    font-size: 16px;
+    font-weight: 600;
+    border: none;
+    background-color: yellow;
+}
+
+.container .tabcontent .newpgform form button:hover {
+    cursor: pointer;
 }
