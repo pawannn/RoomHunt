@@ -7,19 +7,23 @@ const pgSchema = new Schema({
         type : String,
         required : true,
     },
+    pgType : {
+        type : String,
+        required : true,
+    },
     pgState : {
         type : String,
         required : true,
     },
-    pgDistrict : {
-        type : String,
-        required : true,
-    },
-    pgArea : {
+    pgCity : {
         type : String,
         required : true,
     },
     pgPincode : {
+        type : String,
+        required : true,
+    },
+    pgAddress : {
         type : String,
         required : true,
     },
@@ -41,6 +45,9 @@ const pgSchema = new Schema({
     },
     comments : {
         type : Array
+    },
+    RoomRequests : {
+        type : Array,
     },
     ownerId : {
         type : String,

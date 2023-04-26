@@ -12,23 +12,44 @@
 </head>
 <body>
     <div class = "container">
-        <div class = "details">
-            <h1>Landlord, Dashboard</h1>
-            <p>Name : <%=data.name%></p>
-            <p>Email : <%=data.email%></p>
-            <p>Number : <%=data.phone%></p>
+        <div class = "title">
+            <h1><%=data.name%>'s, Dashboard</h1>
+        </div>
+        <div class = "head">
+            <div class = "details">
+                <p>Name : <%=data.name%></p>
+                <p>Email : <%=data.email%></p>
+                <p>Number : <%=data.phone%></p>
+            </div>
+            <div class = "image">
+                <img src = "/assets/dashboard.png" alt = "dashboard"/>
+            </div>
         </div>
         <div class = "content">
             <div class="tab">
-                <button class="tablinks" onclick="opensection(event, 'mypg')">My PGs</button>
-                <button class="tablinks" onclick="opensection(event, 'newpg')">New PG</button>
+                <button class="tablinks" onclick="opensection(event, 'mypg')"><b>My PGs</b></button>
+                <button class="tablinks" onclick="opensection(event, 'newpg')"><b>New PG</b></button>
               </div>
               
               <div id="mypg" class="tabcontent">
-                <h3>My PGs</h3>
-                <p>Your PGs</p>
+                <div class = "mypg">
+                    <% if (data.pgs.length > 0) { %>
+                        <% data.pgs.forEach(function(pg) { %>
+                            <div class = "pg">
+                                <div class = "pgdetails">
+                                    <!-- <p>Name : <%=pg.name%></p>
+                                    <p>Address : <%=pg.address%></p>
+                                    <p>Number : <%=pg.phone%></p> -->
+                                    <p>Yes data</p>
+                                </div>
+                            </div>
+                        <% }) %>
+                    <% } else { %>
+                        <img src = "/assets/nodata.png" alt = "no data"/>
+                        <b>You Have not added any PG currently</b>
+                    <% } %>
+                </div>
               </div>
-              
               <div id="newpg" class="tabcontent">
                 <h3>New PG</h3>
                 <p>Add New PG</p>
@@ -36,7 +57,7 @@
         </div>
         <div class = "footer">
             <form method = "POST" action = "/api/landlordlogout">
-                <button type = "submit">Logout</button>
+                <button type = "submit"><b>Logout</b></button>
             </form>
         </div>
         <script src = "/scripts/landlorddashboard.js"></script>
