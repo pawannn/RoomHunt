@@ -42,7 +42,6 @@ function setState(){
     var StateSelected = document.getElementById('inputState').value;
     var optionsList;
     var htmlString = "";
-    console.log(StateSelected)
   
     switch (StateSelected) {
       case "Andra Pradesh":

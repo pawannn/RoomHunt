@@ -28,6 +28,18 @@ const index = (req, res) => {
     })
 }
 
+const display_PG = (req, res) => {
+    const pgID = req.params.id;
+    PG.findById(pgID)
+    .then((pg) => {
+        res.render('landlordpgdetails', {pg : pg});
+    })
+    .catch((err) => {
+        res.send({err : err});
+    })
+}
+
 module.exports = {
     index,
+    display_PG
 }

@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/styles/landlordpgdetails.css">
+    <title><%=pg.pgname%></title>
+</head>
+<body>
+    <div class = "container">
+        <div class = "titlecard">
+            <h1><%=pg.pgname%></h1>
+        </div>
+        <div class = "content">
+            <div class = "data">
+            <div class="tab">
+            <button class="tablinks" onclick="openCity(event, 'Details')">Details</button>
+            <button class="tablinks" onclick="openCity(event, 'RoomRequests')">Room Requests</button>
+            <button class="tablinks" onclick="openCity(event, 'edit')">Edit Details</button>
+            <button class="tablinks" onclick="openCity(event, 'lodgers')">Lodger</button>
+            <button class="tablinks" onclick="openCity(event, 'addlodger')">Add lodger</button>
+            </div>
+    
+            <div id="Details" class="tabcontent">
+                <!-- <h3>Details</h3> -->
+                <div class = "data">
+                    <table border="1">
+                        <tr>
+                            <td>PG Name</td>
+                            <td><%=pg.pgname%></td>
+                        </tr>
+                        <tr>
+                            <td>PG Type</td>
+                            <td><%=pg.pgType%></td>
+                        </tr>
+                        <tr>
+                            <td>PG State</td>
+                            <td><%=pg.pgState%></td>
+                        </tr>
+                        <tr>
+                            <td>PG City</td>
+                            <td><%=pg.pgCity%></td>
+                        </tr>
+                        <tr>
+                            <td>PG Pincode</td>
+                            <td><%=pg.pgPincode%></td>
+                        </tr>
+                        <tr>
+                            <td>PG Address</td>
+                            <td><%=pg.pgAddress%></td>
+                        </tr>
+                        <tr>
+                            <td>PG Phone</td>
+                            <td><%=pg.pgPhone%></td>
+                        </tr>
+                        <tr>
+                            <td>Single Room Price</td>
+                            <td><%=pg.singleRoomPrice%></td>
+                        </tr>
+                        <tr>
+                            <td>Double Sharing price</td>
+                            <td><%=pg.doubleRoomPrice%></td>
+                        </tr>
+                        <tr>
+                            <td>Extra Sharing Price</td>
+                            <td><%=pg.price%></td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+            <div id="RoomRequests" class="tabcontent">
+                <div class = "data">
+                    <% if (pg.RoomRequests.length > 0)  { %>
+                        <p>Yes data</p>
+                    <% } else {%>
+                        <img src = "/assets/empty.png" />
+                        <h3>No Requests Yet</h3>
+                    <%}%>
+                </div>
+            </div>
+    
+            <div id="edit" class="tabcontent">
+                <div class = "data">
+                    <form method = "POST" action = "/pgAPI/update/<%=pg._id%>">
+                        <table border="1">
+                            <tr>
+                                <td>PG Name</td>
+                                <!-- <td><%=pg.pgname%></td> -->
+                                <td><input type = "text" value = "<%=pg.pgname%>" name = "pgname"/></td>
+                            </tr>
+                            <tr>
+                                <td>PG Type</td>
+                                <!-- <td><%=pg.pgType%></td> -->
+                                <td>
+                                    <select name="pgType" id="pgType" name = "pgType">
+                                        <option value = "None"><b>Select</b></option>
+                                        <option value="men" <%= pg.pgType === 'men' ? 'selected' : '' %>><b>Men's PG</b></option>
+                                        <option value="women" <%= pg.pgType === 'women' ? 'selected' : '' %>><b>Women's PG</b></option>
+                                        <option value="colive" <%= pg.pgType === 'colive' ? 'selected' : '' %>><b>Colive PG</b></option>
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>PG State</td>
+                                <!-- <td><%=pg.pgState%></td> -->
+                                <td>
+                                    <select name = "pgState" id="inputState" name = "pgState">
+                                        <option value="">Select State</option>
+                                        <option value="Andra Pradesh">Andra Pradesh</option>
+                                        <option value="Arunachal Pradesh">Arunachal Pradesh</option>
+                                        <option value="Assam">Assam</option>
+                                        <option value="Bihar">Bihar</option>
+                                        <option value="Chhattisgarh">Chhattisgarh</option>
+                                        <option value="Goa">Goa</option>
+                                        <option value="Gujarat">Gujarat</option>
+                                        <option value="Haryana">Haryana</option>
+                                        <option value="Himachal Pradesh">Himachal Pradesh</option>
+                                        <option value="Jammu and Kashmir">Jammu and Kashmir</option>
+                                        <option value="Jharkhand">Jharkhand</option>
+                                        <option value="Karnataka">Karnataka</option>
+                                        <option value="Kerala">Kerala</option>
+                                        <option value="Madya Pradesh">Madya Pradesh</option>
+                                        <option value="Maharashtra">Maharashtra</option>
+                                        <option value="Manipur">Manipur</option>
+                                        <option value="Meghalaya">Meghalaya</option>
+                                        <option value="Mizoram">Mizoram</option>
+                                        <option value="Nagaland">Nagaland</option>
+                                        <option value="Orissa">Orissa</option>
+                                        <option value="Punjab">Punjab</option>
+                                        <option value="Rajasthan">Rajasthan</option>
+                                        <option value="Sikkim">Sikkim</option>
+                                        <option value="Tamil Nadu">Tamil Nadu</option>
+                                        <option value="Telangana">Telangana</option>
+                                        <option value="Tripura">Tripura</option>
+                                        <option value="Uttaranchal">Uttaranchal</option>
+                                        <option value="Uttar Pradesh">Uttar Pradesh</option>
+                                        <option value="West Bengal">West Bengal</option>
+                                        <option disabled style="background-color:#aaa; color:#fff">UNION Territories</option>
+                                        <option value="Andaman and Nicobar Islands">Andaman and Nicobar Islands</option>
+                                        <option value="Chandigarh">Chandigarh</option>
+                                        <option value="Dadar and Nagar Haveli">Dadar and Nagar Haveli</option>
+                                        <option value="Daman and Diu">Daman and Diu</option>
+                                        <option value="Delhi">Delhi</option>
+                                        <option value="Lakshadeep">Lakshadeep</option>
+                                        <option value="Pondicherry">Pondicherry</option>
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>PG City</td>
+                                <!-- <td><%=pg.pgCity%></td> -->
+                                <td>
+                                    <select name = "pgCity" id="inputDistrict" name = "pgCity">
+                                        <option value="">-- select one --</option>
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>PG Pincode</td>
+                                <!-- <td><%=pg.pgPincode%></td> -->
+                                <td><input type = "number" value = "<%=pg.pgPincode%>" name = "pgPincode"/></td>
+                            </tr>
+                            <tr>
+                                <td>PG Address</td>
+                                <!-- <td><%=pg.pgAddress%></td> -->
+                                <td>
+                                    <textarea name = "pgAddress"><%=pg.pgAddress%></textarea>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>PG Phone</td>
+                                <td><input type = "number" value = "<%=pg.pgPhone%>" name = "pgPhone"/></td>
+                            </tr>
+                            <tr>
+                                <td>Single Room Price</td>
+                                <td><input type = "number" value = "<%=pg.singleRoomPrice%>" name = "singleRoomPrice"/></td>
+                            </tr>
+                            <tr>
+                                <td>Double Sharing price</td>
+                                <td><input type = "number" value = "<%=pg.doubleRoomPrice%>" name = "doubleRoomPrice"/></td>
+                            </tr>
+                            <tr>
+                                <td>Extra Sharing Price</td>
+                                <td><input type = "number" value = "<%=pg.price%>" name = "price"/></td>
+                            </tr>
+                        </table>
+                        <div class="button">
+                            <button type="submit">Update</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <div id="lodgers" class="tabcontent">
+                <h3>Lodger Details</h3>
+                <p>Lodger Details of pg</p>
+            </div>
+
+            <div id="addlodger" class="tabcontent">
+                <h3>Add New lodger</h3>
+                <p>Add New lodger</p>
+            </div>
+
+        </div>
+        </div>
+        <div class = "delete">
+            <form method = "POST" action = "/pgAPI/delete/<%=pg._id%>">
+                <button>Delete PG</button>
+            </form>
+        </div>
+    </div>
+    <script src = "/scripts/stateCity.js"></script>
+    <script src = "/scripts/landlordpgdetails.js"></script>
+</body>
+</html>
