@@ -4,15 +4,161 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <link rel="stylesheet" href="/styles/lodgerdashboard.css"/>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100&display=swap" rel="stylesheet">
+    <title>Find your PG</title>
 </head>
 <body>
-    <h1>Lodger Dashboard</h1>
-    <p>Name : <%=data.name%></p>
-    <p>Email : <%=data.email%></p>
-    <p>Number : <%=data.phone%></p>
-    <form method = "POST" action = "/api/lodgerlogout">
+    <div class = "container">
+        <div class = "titlecard">
+            <h1>Welcome! <%=data.name%></h1>
+            <div class = "saved">
+                <a href = "/savedpgs"><img src = "/assets/bag.png" src = "bag"/></a>
+                <a href = "/savedpgs" style="text-decoration : none"><p>My PGs</p></a>
+            </div>
+        </div>
+        <div class = "bodycontent">
+            <div class = "filterbar">
+                <form method = "POST" action = "/pgAPI/retrieve">
+                    <div class = "filteroption">
+                        <label>PG State</label>
+                        <select name = "pgState" id="inputState">
+                            <option value="">Select State</option>
+                            <option value="Andra Pradesh">Andra Pradesh</option>
+                            <option value="Arunachal Pradesh">Arunachal Pradesh</option>
+                            <option value="Assam">Assam</option>
+                            <option value="Bihar">Bihar</option>
+                            <option value="Chhattisgarh">Chhattisgarh</option>
+                            <option value="Goa">Goa</option>
+                            <option value="Gujarat">Gujarat</option>
+                            <option value="Haryana">Haryana</option>
+                            <option value="Himachal Pradesh">Himachal Pradesh</option>
+                            <option value="Jammu and Kashmir">Jammu and Kashmir</option>
+                            <option value="Jharkhand">Jharkhand</option>
+                            <option value="Karnataka">Karnataka</option>
+                            <option value="Kerala">Kerala</option>
+                            <option value="Madya Pradesh">Madya Pradesh</option>
+                            <option value="Maharashtra">Maharashtra</option>
+                            <option value="Manipur">Manipur</option>
+                            <option value="Meghalaya">Meghalaya</option>
+                            <option value="Mizoram">Mizoram</option>
+                            <option value="Nagaland">Nagaland</option>
+                            <option value="Orissa">Orissa</option>
+                            <option value="Punjab">Punjab</option>
+                            <option value="Rajasthan">Rajasthan</option>
+                            <option value="Sikkim">Sikkim</option>
+                            <option value="Tamil Nadu">Tamil Nadu</option>
+                            <option value="Telangana">Telangana</option>
+                            <option value="Tripura">Tripura</option>
+                            <option value="Uttaranchal">Uttaranchal</option>
+                            <option value="Uttar Pradesh">Uttar Pradesh</option>
+                            <option value="West Bengal">West Bengal</option>
+                            <option disabled style="background-color:#aaa; color:#fff">UNION Territories</option>
+                            <option value="Andaman and Nicobar Islands">Andaman and Nicobar Islands</option>
+                            <option value="Chandigarh">Chandigarh</option>
+                            <option value="Dadar and Nagar Haveli">Dadar and Nagar Haveli</option>
+                            <option value="Daman and Diu">Daman and Diu</option>
+                            <option value="Delhi">Delhi</option>
+                            <option value="Lakshadeep">Lakshadeep</option>
+                            <option value="Pondicherry">Pondicherry</option>
+                        </select>
+                    </div>
+                    <div class = "filteroption">
+                        <label>PG Area</label>
+                        <select name = "pgCity" id = "inputDistrict">
+                            <option value="">-- select one --</option>
+                        </select> 
+                    </div>
+                    <div class = "filteroption">
+                        <label>PG Type</label>
+                        <select name = "pgType">
+                            <option value = "">Select PG Type</option>
+                            <option value = "men">Men</option>
+                            <option value = "women">Women</option>
+                            <option value = "colive">Colive</option>
+                        </select>
+                    </div>
+                    <div class = "filteroption">
+                        <label>Price Limit</label>
+                        <select name = "pricelimit">
+                            <option value = "3000" selected>3000</option>
+                            <option value = "4000">4000</option>
+                            <option value = "5000">5000</option>
+                            <option value = "6000">6000</option>
+                            <option value = "7000">7000</option>
+                            <option value = "8000">8000</option>
+                            <option value = "9000">9000</option>
+                            <option value = "10000">10000</option>
+                            <option value = "more">10000+</option>
+                        </select>
+                    </div>
+                    <div class = "filteroptionbutton">
+                        <button type = "submit">Filter</button>
+                    </div>
+                </form>
+            </div>
+            <div class = "result">
+                <% if (pgs.length == 0) {%>
+                    <img src = "/assets/filter.png" />
+                    <h3>Filter to find your PG</h3>
+                <%} else {%>
+                    <!-- Now we will make result cards -->
+                    <% for (var i = 0; i < pgs.length; i++) {%>
+                        <div class = "resultcard">
+                            <div class = "resultcardcontent">
+                                <!-- <h3><%=pgs[i].pgname%></h3>
+                                <p><%=pgs[i].pgState%></p>
+                                <p><%=pgs[i].pgCity%></p>
+                                <p><%=pgs[i].pgPincode%></p>
+                                <p><%=pgs[i].pgAddress%></p>
+                                <p><%=pgs[i].singleRoomPrice%></p>
+                                <p><%=pgs[i].doubleRoomPrice%></p>
+                                <p><%=pgs[i].price%></p>
+                                <form method = "POST" action = "/api/savepg">
+                                    <input type = "hidden" name = "pgid" value = "<%=pgs[i]._id%>"/>
+                                    <button type = "submit">Save</button>
+                                </form> -->
+                                <table>
+                                    <tr>
+                                        <td>PG Name : <%=pgs[i].pgname%></td>
+                                        <td>PG State : <%=pgs[i].pgState%></td>
+                                        <td>PG City : <%=pgs[i].pgCity%></td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="2">PG Address : <%=pgs[i].pgAddress%></td>
+                                        <td>PG Pincode : <%=pgs[i].pgPincode%></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Single Room Price : <%=pgs[i].singleRoomPrice%></td>
+                                        <td>Double Sharing Price : <%=pgs[i].doubleRoomPrice%></td>
+                                        <td>Extra Sharing Price : <%=pgs[i].price%></td>
+                                    </tr>
+                                    <tr>
+                                        <td>PG Type : <%=pgs[i].pgType%></td>
+                                        <td>PG Contact : <%=pgs[i].pgPhone%></td>
+                                        <td><form>
+                                            <input type = "hidden" name = "pgid" value = "<%=pgs[i]._id%>"/>
+                                            <button type = "submit">View More</button>
+                                        </form></td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                    <%}%>
+                <%}%>
+            </div>
+        </div>
+        <div  class = "logout">
+            <form method = "POST" action = "/api/lodgerlogout">
+                <button type = "submit">Logout</button>
+            </form>
+        </div>
+    </div>
+    <!-- <form method = "POST" action = "/api/lodgerlogout">
         <button type = "submit">Logout</button>
-    </form>
+    </form> -->
+    <script src = "/scripts/stateCity.js"></script>
 </body>
 </html>

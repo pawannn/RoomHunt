@@ -11,4 +11,6 @@ router.post('/delete/:id', Authentication.landlord_Authentication, pgCRUD.delete
 
 router.post('/update/:id', Authentication.landlord_Authentication, pgCRUD.update_pg);
 
+router.post('/retrieve', Authentication.lodger_Authentication, pgCRUD.retrieve);
+
 module.exports = router;

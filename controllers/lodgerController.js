@@ -8,8 +8,11 @@ const index = (req, res) => {
             name : user.name,
             email : user.email,
             phone : user.phone,
+            savedpgs : user.savedpgs,
         }
-        res.render('lodgerdashboard', {data : data});
+        const pgs = [];
+        console.log(pgs.length);
+        res.render('lodgerdashboard', {data : data, pgs : pgs});
     })
     .catch((err) => {
         res.json({err: err});

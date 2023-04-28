@@ -1,5 +1,6 @@
 const PG = require('../models/pg');
 const Landlords = require('../models/landlord');
+const Lodgers = require('../models/lodger');
 
 const create = (req, res) => {
     const userID = req.user.id;
@@ -117,8 +118,28 @@ const update_pg = (req, res) => {
     })
 }
 
+const retrieve = (req, res) => {
+    const pgState = req.body.pgState;
+    const pgCity = req.body.pgCity;
+    const pgPricelimit = req.body.pricelimit;
+    PG.find({pgState : pgState, pgCity : pgCity, price : {$lte : pgPricelimit}})
+    .then((pgs) => {
+        //redirect to lordger dashboard with pgs and userdata
+        Lodgers.findById(req.user.id)
+        .then((user) => {
+            res.render('lodgerdashboard', {pgs : pgs, data : user});
+        })
+        // res.json({pgs : pgs});
+    })
+    .catch((err) => {
+        res.send({err : err});
+    })
+
+}
+
 module.exports = {
     create,
     delete_pg,
-    update_pg
+    update_pg,
+    retrieve,
 }
