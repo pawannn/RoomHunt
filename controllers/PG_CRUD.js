@@ -1,10 +1,9 @@
-const PG = require('../models/pg');
 const Landlords = require('../models/landlord');
-const Lodgers = require('../models/lodger');
+const PG = require('../models/PG');
 
 const create = (req, res) => {
     const userID = req.user.id;
-    const pgData = {
+    const Data = {
         pgname : req.body.pgname,
         pgState : req.body.pgState,
         pgCity : req.body.pgCity,
@@ -19,7 +18,7 @@ const create = (req, res) => {
         comments : [],
         RoomRequests : [],
     }
-    const pg = new PG(pgData);
+    const pg = new PG(Data);
     pg.save()
     .then((result) => {
         Landlords.findById(userID)
@@ -85,7 +84,7 @@ const update_pg = (req, res) => {
         console.log(pg.ownerId);
         if(pg.ownerId == userID){
             console.log(2);
-            const pgData = {
+            const Data = {
                 pgname : req.body.pgname,
                 pgState : req.body.pgState,
                 pgCity : req.body.pgCity,
@@ -97,7 +96,7 @@ const update_pg = (req, res) => {
                 doubleRoomPrice : req.body.doubleRoomPrice,
                 price : req.body.price,
             }
-            PG.findByIdAndUpdate(pgID, pgData)
+            PG.findByIdAndUpdate(pgID, Data)
             .then((result) => {
                 console.log(3);
                 res.redirect('/landlorddashboard');
@@ -118,28 +117,8 @@ const update_pg = (req, res) => {
     })
 }
 
-const retrieve = (req, res) => {
-    const pgState = req.body.pgState;
-    const pgCity = req.body.pgCity;
-    const pgPricelimit = req.body.pricelimit;
-    PG.find({pgState : pgState, pgCity : pgCity, price : {$lte : pgPricelimit}})
-    .then((pgs) => {
-        //redirect to lordger dashboard with pgs and userdata
-        Lodgers.findById(req.user.id)
-        .then((user) => {
-            res.render('lodgerdashboard', {pgs : pgs, data : user});
-        })
-        // res.json({pgs : pgs});
-    })
-    .catch((err) => {
-        res.send({err : err});
-    })
-
-}
-
 module.exports = {
     create,
     delete_pg,
     update_pg,
-    retrieve,
 }

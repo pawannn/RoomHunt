@@ -1,5 +1,5 @@
 const Landlords = require('../models/landlord');
-const PG = require('../models/pg');
+const PG = require('../models/PG');
 //index
 
 const index = (req, res) => {

@@ -21,7 +21,7 @@
         </div>
         <div class = "bodycontent">
             <div class = "filterbar">
-                <form method = "POST" action = "/pgAPI/retrieve">
+                <form method = "POST" action = "/lodgerdashboard">
                     <div class = "filteroption">
                         <label>PG State</label>
                         <select name = "pgState" id="inputState">
@@ -104,49 +104,37 @@
                     <img src = "/assets/filter.png" />
                     <h3>Filter to find your PG</h3>
                 <%} else {%>
-                    <!-- Now we will make result cards -->
-                    <% for (var i = 0; i < pgs.length; i++) {%>
-                        <div class = "resultcard">
-                            <div class = "resultcardcontent">
-                                <!-- <h3><%=pgs[i].pgname%></h3>
-                                <p><%=pgs[i].pgState%></p>
-                                <p><%=pgs[i].pgCity%></p>
-                                <p><%=pgs[i].pgPincode%></p>
-                                <p><%=pgs[i].pgAddress%></p>
-                                <p><%=pgs[i].singleRoomPrice%></p>
-                                <p><%=pgs[i].doubleRoomPrice%></p>
-                                <p><%=pgs[i].price%></p>
-                                <form method = "POST" action = "/api/savepg">
-                                    <input type = "hidden" name = "pgid" value = "<%=pgs[i]._id%>"/>
-                                    <button type = "submit">Save</button>
-                                </form> -->
-                                <table>
-                                    <tr>
-                                        <td>PG Name : <%=pgs[i].pgname%></td>
-                                        <td>PG State : <%=pgs[i].pgState%></td>
-                                        <td>PG City : <%=pgs[i].pgCity%></td>
-                                    </tr>
-                                    <tr>
-                                        <td colspan="2">PG Address : <%=pgs[i].pgAddress%></td>
-                                        <td>PG Pincode : <%=pgs[i].pgPincode%></td>
-                                    </tr>
-                                    <tr>
-                                        <td>Single Room Price : <%=pgs[i].singleRoomPrice%></td>
-                                        <td>Double Sharing Price : <%=pgs[i].doubleRoomPrice%></td>
-                                        <td>Extra Sharing Price : <%=pgs[i].price%></td>
-                                    </tr>
-                                    <tr>
-                                        <td>PG Type : <%=pgs[i].pgType%></td>
-                                        <td>PG Contact : <%=pgs[i].pgPhone%></td>
-                                        <td><form>
-                                            <input type = "hidden" name = "pgid" value = "<%=pgs[i]._id%>"/>
-                                            <button type = "submit">View More</button>
-                                        </form></td>
-                                    </tr>
-                                </table>
+                    <div class = "scrollable-box">   
+                        <% for (var i = 0; i < pgs.length; i++) {%>
+                            <div class = "resultcard">
+                                <div class = "resultcardcontent">
+                                    <table>
+                                        <tr>
+                                            <td>PG Name : <%=pgs[i].pgname%></td>
+                                            <td>PG State : <%=pgs[i].pgState%></td>
+                                            <td>PG City : <%=pgs[i].pgCity%></td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="2">PG Address : <%=pgs[i].pgAddress%></td>
+                                            <td>PG Pincode : <%=pgs[i].pgPincode%></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Single Room Price : <%=pgs[i].singleRoomPrice%></td>
+                                            <td>Double Sharing Price : <%=pgs[i].doubleRoomPrice%></td>
+                                            <td>Extra Sharing Price : <%=pgs[i].price%></td>
+                                        </tr>
+                                        <tr>
+                                            <td>PG Type : <%=pgs[i].pgType%></td>
+                                            <td>PG Contact : <%=pgs[i].pgPhone%></td>
+                                            <td><form action = "/lodgerdashboard/pg/<%=pgs[i]._id%>">
+                                                <button type = "submit">View More</button>
+                                            </form></td>
+                                        </tr>
+                                    </table>
+                                </div>
                             </div>
-                        </div>
-                    <%}%>
+                        <%}%>
+                    </div>
                 <%}%>
             </div>
         </div>
