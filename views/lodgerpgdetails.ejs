@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/styles/lodgerpgdetails.css">
+    <title><%=pg.pgname%></title>
+</head>
+<body>
+    <div class = "container">
+        <div class = "title">
+            <h1><%=pg.pgname%></h1>
+        </div>
+        <div class = "aboutpg">
+            <h2>About PG</h2>
+            <table border="1">
+                <tr>
+                    <td>PG Name</td>
+                    <td><%=pg.pgname%></td>
+                </tr>
+                <tr>
+                    <td>PG Type</td>
+                    <td><%=pg.pgType%></td>
+                </tr>
+                <tr>
+                    <td>State</td>
+                    <td><%=pg.pgState%></td>
+                </tr>
+                <tr>
+                    <td>District</td>
+                    <td><%=pg.pgCity%></td>
+                </tr>
+                <tr>
+                    <td>Pincode</td>
+                    <td><%=pg.pgPincode%></td>
+                </tr>
+                <tr>
+                    <td>Address</td>
+                    <td><%=pg.pgAddress%></td>
+                </tr>
+                <tr>
+                    <td>Contact / Phone</td>
+                    <td><%=pg.pgPhone%></td>
+                </tr>
+                <tr>
+                    <td>Single Room Price</td>
+                    <td><%=pg.singleRoomPrice%></td>
+                </tr>
+                <tr>
+                    <td>Double Sharing Price</td>
+                    <td><%=pg.doubleRoomPrice%></td>
+                </tr>
+                <tr>
+                    <td>Extra sharing Price</td>
+                    <td><%=pg.price%></td>
+                </tr>
+            </table>
+        </div>
+        <div class = "aboutowner">
+            <h2>About Owner</h2>
+            <table border="1">
+                <tr>
+                    <td>Owner Name</td>
+                    <td><%=landlord.name%></td>
+                </tr>
+                <tr>
+                    <td>Owner Phone</td>
+                    <td><%=landlord.phone%></td>
+                </tr>
+                <tr>
+                    <td>Owner Email</td>
+                    <td><%=landlord.email%></td>
+                </tr>
+            </table>
+        </div>
+        <div class = "buttons">
+            <form method = "POST" action = "/lodgerdashboard/pg/<%=pg._id%>/requestroom">
+                <input type="hidden" name = "lodgername" value="<%=lodger.name%>"/>
+                <input type="hidden" name = "lodgeremail" value="<%=lodger.email%>"/>
+                <input type="hidden" name = "lodgerphone" value="<%=lodger.phone%>"/>
+                <button type = "submit">Request A Room</button>
+            </form>
+            <form method = "POST" action = "/lodgerdashboard/pg/<%=pg._id%>/save">
+                <button>Save PG</button>
+            </form>
+        </div>
+        <div class = "comments">
+            <h2>Comments</h2>
+            <% if (pg.comments.length > 0) { %>
+                <h2>Comments</h2>
+                <% pg.comments.forEach(function(comment) { %>
+                    <div class = "comment">
+                        <h3><%=comment.author%></h3>
+                        <p><%=comment.comment%></p>
+                    </div>
+                <%})%>
+            <%} else { %>
+                <h3>No Comments Yet</h3>
+            <%}%>
+        </div>
+    </div>
+</body>
+</html>

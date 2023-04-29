@@ -1,0 +1,78 @@
+@import url('./main.css');
+
+.container {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.container .title {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.container .aboutpg {
+    width: 70%;
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    gap : 10px;
+}
+
+.container table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.container td {
+    width: 25% ;
+    text-align: center; 
+    padding: 10px;
+    font-size: 16px;
+    font-weight: 900;
+}
+
+.container .aboutowner {
+    width: 70%;
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    gap : 10px;
+}
+
+.container .buttons {
+    width: 40%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 5px;
+    margin-bottom: 20px;
+}
+
+.container .buttons button {
+    width : 200px;
+    height: 50px;
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.container .buttons button:hover {
+    cursor: pointer;
+}
+
+.container .comments {
+    width: 70%;
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    gap : 10px;
+    border: 1px solid black;
+    padding: 5px;
+}
+
