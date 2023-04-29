@@ -49,6 +49,10 @@ const pg_get = (req, res) => {
             Lodger.findById(userID)
             .then((user) => {
                 const lodger_data = user;
+                lodger_data.saved = false;
+                if(user.savedpgs.includes(pgID)) {
+                    lodger_data.saved = true;
+                }
                 res.render('lodgerpgdetails', {pg : pgdata, landlord : landlord, lodger : lodger_data});
             })
             .catch((err) => {
@@ -87,7 +91,57 @@ const roomrequest = (req, res) => {
 
 const savepg = (req, res) => {
     const userId = req.user.id;
-    //to do
+    Lodger.findById(userId)
+    .then((user) => {
+        user.savedpgs.push(req.params.id);
+        user.save()
+        .then((user) => {
+            res.redirect('/lodgerdashboard/pg/' + req.params.id + '/');
+        })
+        .catch((err) => {
+            res.send({err : err});
+        })
+    })
+    .catch((err) => {
+        res.send({err : err});
+    })
+}
+
+const comment = (req, res) => {
+    const comment = req.body.comment;
+    const author = req.body.author;
+    const pgId = req.params.id;
+    PG.findById(pgId)
+    .then((pg) => {
+        pg.comments.push({comment : comment, author : author});
+        pg.save()
+        .then((pg) => {
+            res.redirect('/lodgerdashboard/pg/' + pgId);
+        })
+        .catch((err) => {
+            res.send({err : err});
+        })
+    })
+    .catch((err) => {
+        res.send({err : err});
+    })
+}
+
+const get_saved = (req, res) => {
+    const userId = req.user.id;
+    Lodger.findById(userId)
+    .then((user) => {
+        const savedpgs = user.savedpgs;
+        PG.find({_id : {$in : savedpgs}})
+        .then((pgs) => {
+            console.log(pgs.RoomRequests);
+            // res.json({pgs : pgs})
+            res.render('lodgersavedpgs', {pgs : pgs});
+        })
+        .catch((err) => {
+            res.send({err : err});
+        })
+    })
 }
 
 module.exports = {
@@ -95,4 +149,7 @@ module.exports = {
     index_post,
     pg_get,
     roomrequest,
+    savepg,
+    comment,
+    get_saved
 }

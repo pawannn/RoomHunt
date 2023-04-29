@@ -84,14 +84,17 @@
                 <input type="hidden" name = "lodgerphone" value="<%=lodger.phone%>"/>
                 <button type = "submit">Request A Room</button>
             </form>
-            <form method = "POST" action = "/lodgerdashboard/pg/<%=pg._id%>/save">
-                <button>Save PG</button>
-            </form>
+            <% if(lodger.saved == true) { %>
+                <button>Saved</button>
+            <% } else { %>
+                <form method = "POST" action = "/lodgerdashboard/pg/<%=pg._id%>/save">
+                    <button>Save PG</button>
+                </form>
+            <% } %>
         </div>
         <div class = "comments">
             <h2>Comments</h2>
             <% if (pg.comments.length > 0) { %>
-                <h2>Comments</h2>
                 <% pg.comments.forEach(function(comment) { %>
                     <div class = "comment">
                         <h3><%=comment.author%></h3>
@@ -101,6 +104,13 @@
             <%} else { %>
                 <h3>No Comments Yet</h3>
             <%}%>
+            <div class = "commentform">
+                <form method = "POST" action = "/lodgerdashboard/pg/<%=pg._id%>/comment">
+                    <input type = "hidden" value = "<%=lodger.name%>" name = "author"/>
+                    <input type = "text" placeholder = "Enter Your Comment" id = "comment" name = "comment" autocomplete="off"/>
+                    <button type = "submit">Comment</button>
+                </form>
+            </div>
         </div>
     </div>
 </body>

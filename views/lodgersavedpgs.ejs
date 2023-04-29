@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/styles/lodgersavedpgs.css">
+    <title>Saved PGS</title>
+</head>
+<body>
+    <div class = "container">
+        <div class = "header">
+            <h1>Saved PGS</h1>
+        </div>
+        <div class = "bodycontent">
+            <% if(pgs) { %>
+            <div class = "savedpgs">
+                <table border="1">
+                    <tr>
+                        <td>PG Name</td>
+                        <td>PG State</td>
+                        <td>PG District</td>
+                        <td>More</td>
+                    </tr>
+                    <% pgs.forEach(function(pg) { %>
+                    <tr>
+                        <td><%= pg.pgname %></td>
+                        <td><%= pg.pgState %></td>
+                        <td><%= pg.pgCity %></td>
+                        <td><a href="/lodgerdashboard/pg/<%= pg._id %>">more</a></td>
+                    </tr>
+                    <% }) %>
+                </table>
+            </div>
+            <% } %>
+        </div>
+     </div>
+</body>
+</html>

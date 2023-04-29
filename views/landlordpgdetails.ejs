@@ -75,7 +75,20 @@
             <div id="RoomRequests" class="tabcontent">
                 <div class = "data">
                     <% if (pg.RoomRequests.length > 0)  { %>
-                        <p>Yes data</p>
+                        <table border="1">
+                            <tr>
+                                <td>Name</td>
+                                <td>Email</td>
+                                <td>Phone</td>
+                            </tr>
+                            <% pg.RoomRequests.forEach(function(request) { %>
+                                <tr>
+                                    <td><%=request.lodgername%></td>
+                                    <td><%=request.lodgeremail%></td>
+                                    <td><%=request.lodgerphone%></td>
+                                </tr>
+                            <% }) %>
+                        </table>
                     <% } else {%>
                         <img src = "/assets/empty.png" />
                         <h3>No Requests Yet</h3>

@@ -170,3 +170,12 @@
 .container .delete button:hover {
     cursor: pointer;
 }
+
+.container .data table {
+    width: 100%;
+}
+
+.con .data table td {
+    width: 20%;
+    text-align: center;
+}

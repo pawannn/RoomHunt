@@ -1,0 +1,46 @@
+@import url('./main.css');
+
+.container {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.container .header {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    margin: 20px 0;
+}
+
+.container .bodycontent {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.container .bodycontent .savedpgs {
+    width : 70%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.container .bodycontent .savedpgs table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.container .bodycontent .savedpgs table td {
+    text-align: center;
+    padding: 10px;
+    font-size: 16px;
+    font-weight: 600;
+}
