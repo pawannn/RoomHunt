@@ -69,7 +69,7 @@ To use the web application, follow these steps :
 
 ## Technologies Used
 
-+ Frontend : EJS
++ Frontend : EJS, Javascript
 + Backedn : Node.js, Express
 + Database : MongoDB
 
