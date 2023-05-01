@@ -17,7 +17,6 @@ RoomHunt is a web app that helps lodgers find PGs according to their budget in t
 - A lodger will be able to Request a room in any PG and the notification will be sent to Landlord, the landlord will review the request and contact the lodger.
 
 ## Installation
-======
 
 1. Clone the Repository
 ```
@@ -47,7 +46,6 @@ npm start
 ```
 
 ## Usage 
-======
 
 To use the web application, follow these steps :
 
@@ -70,7 +68,6 @@ To use the web application, follow these steps :
 - You may also comment on the Rooms in the comment section.
 
 ## Credits 
-======
 
 RoomHunt uses the following third-party libraries:
 + Node.js
