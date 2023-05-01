@@ -41,7 +41,7 @@ npm install
 (ii) dbURI : (your mongoDB access link)
 (iii) ACCESS_TOKEN_SECRET = (A secret Key for JWT authentication)
 
-4. Start the app
+5. Start the app
 ```
 npm start
 ```
