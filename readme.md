@@ -67,9 +67,30 @@ To use the web application, follow these steps :
 - You can save PG by clicking on save PG button and review the PG's in saved PG section.
 - You may also comment on the Rooms in the comment section.
 
-## Credits 
+## Technologies Used
 
-RoomHunt uses the following third-party libraries:
-+ Node.js
-+ Express
-+ MongoDB
++ Frontend : EJS
++ Backedn : Node.js, Express
++ Database : MongoDB
+
+## PG CRUD
+PG CRUD means Create, Retreive, Update, Delete process.
+
+API : `/pgAPI/`
+
+### Routes of PG CRUD
+```js
+const express = require('express');
+const pgCRUD = require('../controllers/PG_CRUD');
+const Authentication = require('../middlewares/authentication')
+
+const router = express.Router();
+
+router.post('/create', Authentication.landlord_Authentication, pgCRUD.create);
+
+router.post('/delete/:id', Authentication.landlord_Authentication, pgCRUD.delete_pg);
+
+router.post('/update/:id', Authentication.landlord_Authentication, pgCRUD.update_pg);
+
+module.exports = router;
+```
