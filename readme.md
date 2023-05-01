@@ -73,24 +73,9 @@ To use the web application, follow these steps :
 + Backedn : Node.js, Express
 + Database : MongoDB
 
-## PG CRUD
-PG CRUD means Create, Retreive, Update, Delete process.
+## Database Relations
+|Table            |Relation        |
+|-----------------|----------------|
+|Landlords and PG |One - to - many |
+|Landlords and PG |many - to - one |
 
-API : `/pgAPI/`
-
-### Routes of PG CRUD
-```js
-const express = require('express');
-const pgCRUD = require('../controllers/PG_CRUD');
-const Authentication = require('../middlewares/authentication')
-
-const router = express.Router();
-
-router.post('/create', Authentication.landlord_Authentication, pgCRUD.create);
-
-router.post('/delete/:id', Authentication.landlord_Authentication, pgCRUD.delete_pg);
-
-router.post('/update/:id', Authentication.landlord_Authentication, pgCRUD.update_pg);
-
-module.exports = router;
-```
