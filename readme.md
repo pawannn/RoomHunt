@@ -70,6 +70,8 @@ To use the web application, follow these steps :
 - You may also comment on the Rooms in the comment section.
 
 ## Credits 
+======
+
 RoomHunt uses the following third-party libraries:
 + Node.js
 + Express
